@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Favorite from "./Favorite";
 import "./EmojiResultRow.css";
 
 const EmojiResultsRow = props => {
@@ -9,6 +10,7 @@ const EmojiResultsRow = props => {
 
   return (
     <div className="component-emoji-result-row copy-to-clipboard" data-clipboard-text={symbol}>
+      <Favorite />
       <img alt={title} src={src} />
       <span className="title">{title}</span>
       <span className="info">Click to copy emoji</span>

@@ -1,0 +1,21 @@
+i {
+  font-style: normal;
+}
+
+.favstar-false:before {
+  content: "⭐";
+  font-size: 2em;
+  color: transparent;
+  text-shadow: 0 0 0 WhiteSmoke;
+  filter: WhiteSmoke(100%);
+  padding-right: 10px;
+}
+
+.favstar-true:before {
+  content: "⭐";
+  font-size: 2em;
+  color: transparent;
+  text-shadow: 0 0 0 Gold;
+  filter: Gold(100%);
+  padding-right: 10px;
+}
