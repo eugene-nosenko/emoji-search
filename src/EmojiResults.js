@@ -5,6 +5,9 @@ import Clipboard from "clipboard";
 import EmojiResultRow from "./EmojiResultRow";
 import "./EmojiResults.css";
 
+import { connect } from "react-redux";
+import { addToFavorite } from "../../store/actions/favorite";
+
 const EmojiResults = ({ emojiData }) => {
   useEffect(() => {
     const clipboard = new Clipboard(".copy-to-clipboard");

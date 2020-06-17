@@ -4,4 +4,15 @@ import App from "./App";
 import "./index.css";
 import "github-fork-ribbon-css/gh-fork-ribbon.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
+const store = createStore(rootReducer);
+
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+ReactDOM.render(app, document.getElementById("root"));
