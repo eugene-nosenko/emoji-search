@@ -6,9 +6,12 @@ import EmojiResultRow from "./EmojiResultRow";
 import "./EmojiResults.css";
 
 import { connect } from "react-redux";
-import { addToFavorite } from "../../store/actions/favorite";
+import { addToFavorite, removeFromFavorite } from "./store/actions/favorite";
 
-const EmojiResults = ({ emojiData }) => {
+const EmojiResults = props => {
+  const { emojiData, favorite, addToFavorite, removeFromFavorite } = props;
+  console.log(favorite);
+
   useEffect(() => {
     const clipboard = new Clipboard(".copy-to-clipboard");
     return () => {
@@ -18,9 +21,20 @@ const EmojiResults = ({ emojiData }) => {
 
   return (
     <div className="component-emoji-results">
-      {emojiData.map(emojiData => (
-        <EmojiResultRow key={emojiData.title} symbol={emojiData.symbol} title={emojiData.title} />
-      ))}
+      {emojiData.map(emojiData => {
+        const codePointHex = emojiData.symbol.codePointAt(0).toString(16);
+        return (
+          <EmojiResultRow
+            codePointHex={codePointHex}
+            isFavorite={favorite.includes(codePointHex)}
+            addToFavorite={addToFavorite}
+            removeFromFavorite={removeFromFavorite}
+            key={emojiData.title}
+            symbol={emojiData.symbol}
+            title={emojiData.title}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -29,4 +43,17 @@ EmojiResults.propTypes = {
   emojiData: PropTypes.array
 };
 
-export default EmojiResults;
+function mapStateToProps(state) {
+  const { favorite } = state.favorite;
+
+  return { favorite };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    removeFromFavorite: idEmoji => dispatch(removeFromFavorite(idEmoji)),
+    addToFavorite: idEmoji => dispatch(addToFavorite(idEmoji))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmojiResults);

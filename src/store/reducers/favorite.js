@@ -9,12 +9,14 @@ export default function favoriteReducer(state = initialState, action) {
     case ADD_TO_FAVORITE:
       return {
         ...state,
-        favorite: [...state.favorite, action.idEmoji]
+        favorite: [...state.favorite, action.codePointHex]
       };
+
     case REMOVE_FROM_FAVORITE:
       return {
         ...state,
-        favorite: [...state.favorite, action.idEmoji]
+        favorite: [...state.favorite.filter(id => id !== action.codePointHex)]
+        // favorite: [...state.favorite.filter(codePointHex => !favorite.includes(action.codePointHex))]
       };
 
     default:

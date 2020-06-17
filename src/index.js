@@ -6,6 +6,7 @@ import "github-fork-ribbon-css/gh-fork-ribbon.css";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import rootReducer from "./store/reducers/rootReducer";
 
 const store = createStore(rootReducer);
 
