@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Favorite.css";
 
-const Favorite = () => {
-  const [fariteFlag, setFavoriteFlag] = useState(false);
-  const handleFavorite = event => {
-    setFavoriteFlag(!fariteFlag);
-  };
+const Favorite = props => {
+  const { addToFavorite, removeFromFavorite, codePointHex, isFavorite } = props;
 
   return (
     <>
-      <span onClick={handleFavorite}>
-        {fariteFlag ? <i className="favstar-true" /> : <i className="favstar-false" />}
-      </span>
+      {isFavorite ? (
+        <span onClick={() => removeFromFavorite(codePointHex)}>
+          <i className="favstar-true" />
+        </span>
+      ) : (
+        <span onClick={() => addToFavorite(codePointHex)}>
+          <i className="favstar-false" />
+        </span>
+      )}
     </>
   );
 };
