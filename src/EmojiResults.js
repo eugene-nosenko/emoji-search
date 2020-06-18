@@ -3,14 +3,12 @@ import PropTypes from "prop-types";
 import Clipboard from "clipboard";
 
 import EmojiResultRow from "./EmojiResultRow";
-import "./EmojiResults.css";
 
 import { connect } from "react-redux";
 import { addToFavorite, removeFromFavorite } from "./store/actions/favorite";
 
 const EmojiResults = props => {
   const { emojiData, favorite, addToFavorite, removeFromFavorite } = props;
-  console.log(favorite);
 
   useEffect(() => {
     const clipboard = new Clipboard(".copy-to-clipboard");
@@ -23,8 +21,10 @@ const EmojiResults = props => {
     <div className="component-emoji-results">
       {emojiData.map(emojiData => {
         const codePointHex = emojiData.symbol.codePointAt(0).toString(16);
+
         return (
           <EmojiResultRow
+            src={`//cdn.jsdelivr.net/emojione/assets/png/${codePointHex}.png`}
             codePointHex={codePointHex}
             isFavorite={favorite.includes(codePointHex)}
             addToFavorite={addToFavorite}

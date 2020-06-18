@@ -4,21 +4,17 @@ import "./Favorite.css";
 const Favorite = props => {
   const { addToFavorite, removeFromFavorite, codePointHex, isFavorite } = props;
 
-  const handleFavorite = event => {
-    if (event.target.className === "favstar-false") {
-      addToFavorite(codePointHex);
-    }
-
-    if (event.target.className === "favstar-true") {
-      removeFromFavorite(codePointHex);
-    }
-  };
-
   return (
     <>
-      <span onClick={handleFavorite}>
-        {isFavorite ? <i className="favstar-true" /> : <i className="favstar-false" />}
-      </span>
+      {isFavorite ? (
+        <span onClick={() => removeFromFavorite(codePointHex)}>
+          <i className="favstar-true" />
+        </span>
+      ) : (
+        <span onClick={() => addToFavorite(codePointHex)}>
+          <i className="favstar-false" />
+        </span>
+      )}
     </>
   );
 };

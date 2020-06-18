@@ -4,9 +4,7 @@ import Favorite from "./Favorite";
 import "./EmojiResultRow.css";
 
 const EmojiResultsRow = props => {
-  const { symbol, title, addToFavorite, removeFromFavorite, codePointHex, isFavorite } = props;
-
-  const src = `//cdn.jsdelivr.net/emojione/assets/png/${codePointHex}.png`;
+  const { symbol, title, addToFavorite, removeFromFavorite, codePointHex, src, isFavorite } = props;
 
   return (
     <div className="component-emoji-result-row copy-to-clipboard" data-clipboard-text={symbol}>
