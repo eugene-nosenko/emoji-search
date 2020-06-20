@@ -8,7 +8,14 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./store/reducers/rootReducer";
 
-const store = createStore(rootReducer);
+// https://github.com/zalmoxisus/redux-devtools-extension
+
+/* eslint-disable no-underscore-dangle */
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+/* eslint-enable */
 
 const app = (
   <Provider store={store}>

@@ -8,7 +8,9 @@ import { connect } from "react-redux";
 import { addToFavorite, removeFromFavorite } from "./store/actions/favorite";
 
 const EmojiResults = props => {
-  const { emojiData, favorite, addToFavorite, removeFromFavorite } = props;
+  const { emojiData, favorite, addToFavorite, removeFromFavorite, uid } = props;
+
+  console.log("uid", uid);
 
   useEffect(() => {
     const clipboard = new Clipboard(".copy-to-clipboard");
@@ -32,6 +34,7 @@ const EmojiResults = props => {
             key={emojiData.title}
             symbol={emojiData.symbol}
             title={emojiData.title}
+            uid={uid}
           />
         );
       })}
@@ -44,16 +47,15 @@ EmojiResults.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { favorite } = state.favorite;
+  const { uid } = state.auth.user;
+  const favorite = state.favorite.favorite[uid] || [];
 
-  return { favorite };
+  return { favorite, uid };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    removeFromFavorite: idEmoji => dispatch(removeFromFavorite(idEmoji)),
-    addToFavorite: idEmoji => dispatch(addToFavorite(idEmoji))
-  };
-}
+const mapDispatchToProps = {
+  removeFromFavorite,
+  addToFavorite
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmojiResults);
