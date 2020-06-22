@@ -10,8 +10,6 @@ import { addToFavorite, removeFromFavorite } from "./store/actions/favorite";
 const EmojiResults = props => {
   const { emojiData, favorite, addToFavorite, removeFromFavorite, uid } = props;
 
-  console.log("uid", uid);
-
   useEffect(() => {
     const clipboard = new Clipboard(".copy-to-clipboard");
     return () => {

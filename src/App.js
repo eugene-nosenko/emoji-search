@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import { addUserToStore, removeFromStore } from "./store/actions/auth";
 
 import firebase from "firebase";
-// import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 firebase.initializeApp({
