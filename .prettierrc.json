@@ -1,4 +1,9 @@
 {
+  "editor.formatOnSave": true,
   "singleQuote": false,
-  "printWidth": 100
+  "printWidth": 100,
+  "prettier.trailingComma": "all",
+  "prettier.jsxBracketSameLine": true,
+  "prettier.printWidth": 100,
+  "emmet.triggerExpansionOnTab": true
 }

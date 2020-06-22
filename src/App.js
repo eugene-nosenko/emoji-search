@@ -5,8 +5,10 @@ import EmojiResults from "./EmojiResults";
 import filterEmoji from "./filterEmoji";
 import "./App.css";
 
+import { connect } from "react-redux";
+import { addUserToStore, removeFromStore } from "./store/actions/auth";
+
 import firebase from "firebase";
-import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 firebase.initializeApp({
@@ -14,9 +16,7 @@ firebase.initializeApp({
   authDomain: `${process.env.REACT_APP_FIREBASE_AUTH_DOMAIN}`
 });
 
-const App = () => {
-  const [isSignIn, setSignIn] = useState(false);
-
+const App = ({ addUserToStore, removeFromStore, isSignIn }) => {
   const uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -28,7 +28,12 @@ const App = () => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
-      setSignIn(!!user);
+      addUserToStore({
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL
+      });
     });
   }, []);
 
@@ -38,6 +43,11 @@ const App = () => {
     setfilteredEmoji(filterEmoji(event.target.value, 20));
   };
 
+  const onSignOut = () => {
+    firebase.auth().signOut();
+    removeFromStore();
+  };
+
   return (
     <>
       <div>
@@ -45,7 +55,7 @@ const App = () => {
           <div className="authentication">
             <img src={firebase.auth().currentUser.photoURL} alt="profile pic" />
             <span className="welcome">Welcome {firebase.auth().currentUser.displayName}!</span>
-            <button onClick={() => firebase.auth().signOut()}>Sign Out!</button> <br />
+            <button onClick={onSignOut}>Sign Out!</button> <br />
           </div>
         ) : (
           <div>
@@ -60,4 +70,17 @@ const App = () => {
   );
 };
 
-export default App;
+function mapStateToProps(state) {
+  const { user, isSignIn } = state.auth;
+
+  return { user, isSignIn };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addUserToStore: userFromFirebase => dispatch(addUserToStore(userFromFirebase)),
+    removeFromStore: () => dispatch(removeFromStore())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
