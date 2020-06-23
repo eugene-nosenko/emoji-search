@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+
 import "./index.css";
 import "github-fork-ribbon-css/gh-fork-ribbon.css";
 
-import { createStore } from "redux";
+import { BrowserRouter } from "react-router-dom";
 
+import { createStore } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
@@ -36,9 +38,11 @@ const persistor = persistStore(store);
 
 const app = (
   <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <App />
-    </PersistGate>
+    <BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
+    </BrowserRouter>
   </Provider>
 );
 
