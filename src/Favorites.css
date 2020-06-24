@@ -1,0 +1,18 @@
+.all-favorites-emoji {
+  display: flex;
+  margin: 5vh auto;
+  justify-content: center;
+  max-width: 95%;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+.emoji {
+  width: 32px;
+  height: 32px;
+  font-size: 2em;
+
+  padding: 10px;
+}

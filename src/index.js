@@ -24,9 +24,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// https://github.com/zalmoxisus/redux-devtools-extension
-
 /* eslint-disable no-underscore-dangle */
+// https://github.com/zalmoxisus/redux-devtools-extension
 
 const store = createStore(
   persistedReducer,

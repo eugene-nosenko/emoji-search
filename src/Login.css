@@ -1,0 +1,43 @@
+.authentication {
+  padding: 15px;
+  position: relative;
+  font-weight: normal;
+  font-family: "Open Sans",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 32px;
+  text-align: center;
+  color: #333;
+}
+
+.authentication img {
+  position: relative;
+  border-radius: 50%;
+  top: 4px;
+  width: 32px;
+  height: 32px;
+}
+
+.authentication button {
+  position: relative;
+  top: -5px;
+
+}
+
+span.welcome {
+  padding-right: 15px;
+}
+
+.authentication a {
+  text-decoration: none;
+  color: #aaa;
+  padding-right: 15px;
+}
+
+.authentication a:hover {
+  text-decoration: none;
+  color: #ccc;
+  padding-right: 15px;
+}
