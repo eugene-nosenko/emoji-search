@@ -11,8 +11,6 @@ import { addUserToStore, removeFromStore } from "./store/actions/auth";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 // import Menu from "./Menu";
-import Favorites from "./Favorites";
-import { Link, Switch, Route, Redirect } from "react-router-dom";
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -53,16 +51,6 @@ const App = ({ addUserToStore, removeFromStore, isSignIn, user }) => {
 
   return (
     <>
-      <div className="Menu">
-        <Link to="/">Home</Link>
-        <br />
-        <Link to="/favorites">Favorites</Link>
-        <Switch>
-          <Route path="/favorites" component={Favorites} />
-
-          <Route path="/" component={App} exact />
-        </Switch>
-      </div>
       <div>
         {isSignIn ? (
           <div className="authentication">

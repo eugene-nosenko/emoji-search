@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import Favorites from "./Favorites";
 
 import "./index.css";
 import "github-fork-ribbon-css/gh-fork-ribbon.css";
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { createStore } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
@@ -38,11 +39,14 @@ const persistor = persistStore(store);
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
-      <PersistGate persistor={persistor}>
-        <App />
-      </PersistGate>
-    </BrowserRouter>
+    <PersistGate persistor={persistor}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/favorites" component={Favorites} />
+          <Route path="/" component={App} exact />
+        </Switch>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>
 );
 
