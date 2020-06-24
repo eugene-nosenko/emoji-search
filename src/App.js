@@ -16,7 +16,7 @@ firebase.initializeApp({
   authDomain: `${process.env.REACT_APP_FIREBASE_AUTH_DOMAIN}`
 });
 
-const App = ({ addUserToStore, removeFromStore, isSignIn }) => {
+const App = ({ addUserToStore, removeFromStore, isSignIn, user }) => {
   const uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -35,7 +35,7 @@ const App = ({ addUserToStore, removeFromStore, isSignIn }) => {
         photoURL: user.photoURL
       });
     });
-  }, []);
+  }, [addUserToStore]);
 
   const [filteredEmoji, setfilteredEmoji] = useState(filterEmoji("", 20));
 
@@ -53,8 +53,8 @@ const App = ({ addUserToStore, removeFromStore, isSignIn }) => {
       <div>
         {isSignIn ? (
           <div className="authentication">
-            <img src={firebase.auth().currentUser.photoURL} alt="profile pic" />
-            <span className="welcome">Welcome {firebase.auth().currentUser.displayName}!</span>
+            <img src={user.photoURL} alt="profile pic" />
+            <span className="welcome">Welcome {user.displayName}!</span>
             <button onClick={onSignOut}>Sign Out!</button> <br />
           </div>
         ) : (
