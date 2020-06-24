@@ -10,7 +10,6 @@ import { addUserToStore, removeFromStore } from "./store/actions/auth";
 
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-// import Menu from "./Menu";
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
