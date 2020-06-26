@@ -5,15 +5,7 @@ import { connect } from "react-redux";
 import "./Favorites.css";
 
 const Favorites = ({ user, isSignIn, favorite }) => {
-  // favorite.map
-  // const
-  // emojiList.filter(emoji => {
-  //   if (emoji.title.toLowerCase().includes(searchText.toLowerCase())) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // });
+  //   const text = `\u{1F469}\u{1F3FF}: 👩🏿 emoji`;
 
   return (
     <>
@@ -23,12 +15,14 @@ const Favorites = ({ user, isSignIn, favorite }) => {
       {isSignIn && !(favorite.length === 0) ? (
         <div className="all-favorites-emoji">
           {/* <span className="welcome">{user.displayName} favorites Emoji!</span>
-          {favorite} */}
+          {favorite} 
+          String.fromCodePoint(parseInt(emoji, 16))}
+          */}
 
           {favorite.map((emoji, index) => {
             return (
               <div className="emoji" key={index}>
-                {String.fromCodePoint(parseInt(emoji, 16))}
+                {emoji}
               </div>
             );
           })}
