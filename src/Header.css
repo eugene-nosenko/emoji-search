@@ -13,3 +13,13 @@
   top: 6px;
   padding: 0 14px;
 }
+
+.component-header a {
+  text-decoration: none;
+  color: #aaa;
+}
+
+.component-header a:hover {
+  text-decoration: none;
+  color: #ccc;
+}

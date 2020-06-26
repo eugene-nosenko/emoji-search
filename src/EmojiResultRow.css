@@ -11,15 +11,18 @@
   background-color: #eee;
 }
 
-.component-emoji-result-row img {
+.component-emoji-result-row .symbol {
   width: 32px;
   height: 32px;
   padding-right: 10px;
+  font-size: 2em;
+  top: -2px;
+  position: relative;
 }
 
 .component-emoji-result-row .title {
   position: relative;
-  top: -8px;
+  top: -10px;
 }
 
 .component-emoji-result-row .info {

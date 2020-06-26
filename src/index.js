@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import Favorites from "./Favorites";
+
 import "./index.css";
 import "github-fork-ribbon-css/gh-fork-ribbon.css";
 
-import { createStore } from "redux";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+import { createStore } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
@@ -21,9 +24,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// https://github.com/zalmoxisus/redux-devtools-extension
-
 /* eslint-disable no-underscore-dangle */
+// https://github.com/zalmoxisus/redux-devtools-extension
 
 const store = createStore(
   persistedReducer,
@@ -37,7 +39,12 @@ const persistor = persistStore(store);
 const app = (
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <App />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/favorites" component={Favorites} />
+          <Route path="/" component={App} exact />
+        </Switch>
+      </BrowserRouter>
     </PersistGate>
   </Provider>
 );

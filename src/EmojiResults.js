@@ -19,17 +19,15 @@ const EmojiResults = props => {
 
   return (
     <div className="component-emoji-results">
-      {emojiData.map(emojiData => {
+      {emojiData.map((emojiData, index) => {
         const codePointHex = emojiData.symbol.codePointAt(0).toString(16);
 
         return (
           <EmojiResultRow
-            src={`//cdn.jsdelivr.net/emojione/assets/png/${codePointHex}.png`}
-            codePointHex={codePointHex}
             isFavorite={favorite.includes(codePointHex)}
             addToFavorite={addToFavorite}
             removeFromFavorite={removeFromFavorite}
-            key={emojiData.title}
+            key={index}
             symbol={emojiData.symbol}
             title={emojiData.title}
             uid={uid}
