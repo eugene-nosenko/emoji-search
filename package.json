@@ -1,9 +1,7 @@
 {
   "name": "emoji-search",
   "version": "0.1.0",
-  "homepage": "https://github.com/eugene-finn/",
   "devDependencies": {
-    "gh-pages": "^2.0.1",
     "prettier": "^1.17.1",
     "react-scripts": "^3.0.1"
   },
